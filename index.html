@@ -59,7 +59,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust column size */
             gap: 10px;
-            overflow-y: scroll;
+             overflow: hidden; 
             height: 400px; /* Fixed height for gallery */
             border: 1px solid #ccc;
             padding: 10px;
@@ -67,11 +67,45 @@
             width: 100%;
            
         }
-        .gallery img {
-            width: 100%; /* Ensure images fill their container */
-            height: auto; /* Maintain aspect ratio */
-           
-            
+         .gallery img {
+           cursor: pointer; /* Change cursor to indicate clickable */
+           width: 100%; /* Ensure images fill their container */
+           height: auto; /* Maintain aspect ratio */
+       }
+       .modal {
+           display: none; /* Hidden by default */
+           position: fixed; /* Stay in place */
+           z-index: 1000; /* Sit on top */
+           left: 0;
+           top: 0;
+           width: 100%; /* Full width */
+           height: 100%; /* Full height */
+           overflow: hidden; /* Hide overflow */
+           background-color: rgba(0, 0, 0, 0.8); /* Black background with transparency */
+           justify-content: center; /* Center the content */
+           align-items: center; /* Center the content */
+       }
+       .modal img {
+           max-width: 90%; /* Limit image width */
+           max-height: 90%; /* Limit image height */
+       }
+       .prev, .next {
+           cursor: pointer;
+           position: absolute;
+           top: 50%;
+           transform: translateY(-50%);
+           color: white;
+           font-size: 30px;
+           background: rgba(0, 0, 0, 0.5);
+           border: none;
+           padding: 10px;
+           z-index: 1001;
+       }
+       .prev {
+           left: 10px; /* Position to the left */
+       }
+       .next {
+           right: 10px; /* Position to the right */
         }
         footer {
             background-color: #333;
@@ -100,10 +134,10 @@
             <div class="column">
                 <div class="gallery">
                     <!-- Add your images here -->
-                    <img src="WhatsApp Image 2024-10-07 at 3.36.42 PM.jpeg" alt="Image 1">
-                    <img src="IMG20221107205500.jpg" alt="Image 4">
-                    <img src="IMG20221107205522.jpg" alt="Image 5">
-                    <img src="IMG20221107205708.jpg" alt="Image 5">
+                    <img src="WhatsApp Image 2024-10-07 at 3.36.42 PM.jpeg" alt="Image 1" onclick="openModal(this)">
+                    <img src="IMG20221107205500.jpg" alt="Image 4"  onclick="openModal(this)">
+                    <img src="IMG20221107205522.jpg" alt="Image 5"  onclick="openModal(this)">
+                    <img src="IMG20221107205708.jpg" alt="Image 5"  onclick="openModal(this)">
                 </div>
             </div>
             <div class="column">
@@ -111,9 +145,53 @@
             </div>
         </div>
     </div>
+    <div id="myModal" class="modal">
+        <button class="prev" onclick="changeImage(-1)">&#10094;</button>
+        <img class="modal-content" id="img01">
+        <button class="next" onclick="changeImage(1)">&#10095;</button>
+    </div>
 
     <footer>
         <p>ADDRESS: Rampuram Village,Pendurthi,Visakhapatnam | CONTACT NO: 1234567890</p>
     </footer>
+    <script>
+        let currentImageIndex = 0;
+        const images = [];
+
+        function openModal(imgElement) {
+            const modal = document.getElementById("myModal");
+            const modalImg = document.getElementById("img01");
+
+            // Get all images in the gallery
+            const galleryImages = document.querySelectorAll(".gallery img");
+            images.length = 0; // Clear previous images
+
+            galleryImages.forEach((img) => {
+                images.push(img.src); // Store image src in array
+            });
+
+            currentImageIndex = Array.from(galleryImages).indexOf(imgElement);
+            modalImg.src = imgElement.src; // Set the clicked image source
+            modal.style.display = "flex"; // Show the modal
+        }
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) {
+                currentImageIndex = images.length - 1; // Loop to last image
+            } else if (currentImageIndex >= images.length) {
+                currentImageIndex = 0; // Loop to first image
+            }
+            document.getElementById("img01").src = images[currentImageIndex]; // Change image source
+        }
+
+        // Close modal when clicking outside of image
+        window.onclick = function(event) {
+            const modal = document.getElementById("myModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
 </body>
 </html>
