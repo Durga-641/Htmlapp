@@ -55,12 +55,12 @@
             align-items: center;
            
         }
-        .gallery {
+       .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust column size */
             gap: 10px;
             overflow-y: scroll;
-            height: 400px;
+            height: 400px; /* Fixed height for gallery */
             border: 1px solid #ccc;
             padding: 10px;
             background-color: #fff;
@@ -68,10 +68,10 @@
            
         }
         .gallery img {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
+            width: 100%; /* Ensure images fill their container */
+            height: auto; /* Maintain aspect ratio */
            
+            
         }
         footer {
             background-color: #333;
