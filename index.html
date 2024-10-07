@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photo Gallery</title>
      <style>
-        body {
+         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             margin: 0;
@@ -14,36 +14,41 @@
             flex-direction: column;
             min-height: 100vh;
         }
+        header {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            border: 5px solid chocolate; /* Added border */
+            margin: 0; /* Removed margin */
+            padding: 0; /* Removed padding */
+        }
+        .gif-container {
+            max-width: 500px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background-color: cadetblue;
+            border: 5px solid blue; /* Added border */
+        }
         .container {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            margin-bottom: 0; /* Adjusted to remove any default margin */
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-        }
-        .gif-container {
-            max-width: 500px;
-            width: 30%;
-            display: flex;
-            justify-content: center;
+            padding: 0px;
+            margin: 0; /* Removed margin */
+            border: 5px solid chocolate; /* Added border */
         }
         .main-content {
             display: flex;
             justify-content: space-between;
             width: 100%;
-            max-width: 1200px;
-            margin: 20px 0;
+            margin: 0; /* Removed margin to eliminate gap with container */
+            border: 5px solid chartreuse; /* Added border */
         }
         .column {
             flex: 1;
@@ -51,6 +56,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            border: 5px solid brown; /* Added border */
         }
         .gallery {
             display: grid;
@@ -62,11 +68,13 @@
             padding: 10px;
             background-color: #fff;
             width: 100%;
+            border: 5px solid antiquewhite; /* Added border */
         }
         .gallery img {
             width: 100%;
             height: auto;
             border-radius: 5px;
+            border: 5px solid black; /* Added border */
         }
         footer {
             background-color: #333;
@@ -75,6 +83,8 @@
             text-align: center;
             margin-top: auto;
             width: 100%;
+            border: 5px solid aqua; /* Added border */
+            margin: 0; /* Removed margin */
         }
     </style>
 </head>
